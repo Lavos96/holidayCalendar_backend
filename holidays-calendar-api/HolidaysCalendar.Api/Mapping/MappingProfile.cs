@@ -17,6 +17,11 @@ namespace HolidaysCalendar.Api.Mapping
             CreateMap<RequestResource, Request>();
             CreateMap<TypeResource, Type>();
             CreateMap<StatusResource, Status>();
+
+            // Resource to Domain
+            CreateMap<SaveRequestResource, Request>();
+            CreateMap<SaveTypeResource, Type>();
+            CreateMap<SaveStatusResource, Status>();
         }
     }
 }
