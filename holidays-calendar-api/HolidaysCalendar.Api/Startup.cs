@@ -30,6 +30,9 @@ namespace HolidaysCalendar.Api
 
         public IConfiguration Configuration { get; }
 
+        //Nasze Zasady komunikacji Cors
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -39,6 +42,17 @@ namespace HolidaysCalendar.Api
             services.AddTransient<ITypeService, TypeService>();
             services.AddTransient<IStatusService, StatusService>();
             services.AddDbContext<HolidaysCalendarDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default"), x => x.MigrationsAssembly("HolidaysCalendar.DAL")));
+
+            //Ustawiamy Corsa globalnie do wszystkich endpointów
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    //dodajemy zeby apka mogla sie komunkowac z frontem
+                    builder.WithOrigins("http://localhost:4200").AllowAnyHeader();
+                });
+            });
 
             services.AddSwaggerGen(options =>
             {
@@ -55,6 +69,8 @@ namespace HolidaysCalendar.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            //Ustawiamy Corsa
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseHttpsRedirection();
 
