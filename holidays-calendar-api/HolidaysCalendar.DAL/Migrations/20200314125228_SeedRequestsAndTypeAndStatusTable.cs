@@ -36,13 +36,13 @@ namespace HolidaysCalendar.DAL.Migrations
                 .Sql("INSERT INTO Types (Name) Values ('Urlop okolicznościowy')");
 
             migrationBuilder
-                .Sql("INSERT INTO Requests (StartDate, EndDate, Reason, Requested, LastChange, TypeId, StatusId) Values ((SELECT getdate()), (SELECT dateadd(dd,5,getdate())), 'Test1', (SELECT getdate()), (SELECT getdate()), (SELECT Id From Types Where Name = 'Urlop bezpłatny'), (SELECT Id FROM Statuses WHERE Name = 'Zgłoszony'))");
+                .Sql("INSERT INTO Requests (Employee, StartDate, EndDate, Reason, Requested, LastChange, TypeId, StatusId) Values ('test@gmail.com', (SELECT getdate()), (SELECT dateadd(dd,5,getdate())), 'Test1', (SELECT getdate()), (SELECT getdate()), (SELECT Id From Types Where Name = 'Urlop bezpłatny'), (SELECT Id FROM Statuses WHERE Name = 'Zgłoszony'))");
 
             migrationBuilder
-                .Sql("INSERT INTO Requests (StartDate, EndDate, Reason, Requested, LastChange, TypeId, StatusId) Values ((SELECT Getdate()), (SELECT dateadd(dd,10,getdate())), 'Test2', (SELECT Getdate()), (SELECT Getdate()), (SELECT id FROM Types WHERE Name = 'Urlop na żądanie'), (SELECT id FROM Statuses WHERE Name = 'Zaakceptowany'))");
+                .Sql("INSERT INTO Requests (Employee, StartDate, EndDate, Reason, Requested, LastChange, TypeId, StatusId) Values ('test2@gmail.com',(SELECT Getdate()), (SELECT dateadd(dd,10,getdate())), 'Test2', (SELECT Getdate()), (SELECT Getdate()), (SELECT id FROM Types WHERE Name = 'Urlop na żądanie'), (SELECT id FROM Statuses WHERE Name = 'Zaakceptowany'))");
 
             migrationBuilder
-                .Sql("INSERT INTO Requests (StartDate, EndDate, Reason, Requested, LastChange, TypeId, StatusId) Values ((SELECT Getdate()), (SELECT dateadd(dd,15,getdate())), 'Test3', (SELECT Getdate()), (SELECT Getdate()), (SELECT id FROM Types WHERE Name = 'Urlop wypoczynkowy'), (SELECT id FROM Statuses WHERE Name = 'Odrzucony'))");
+                .Sql("INSERT INTO Requests (Employee, StartDate, EndDate, Reason, Requested, LastChange, TypeId, StatusId) Values ('test3@gmail.com',(SELECT Getdate()), (SELECT dateadd(dd,15,getdate())), 'Test3', (SELECT Getdate()), (SELECT Getdate()), (SELECT id FROM Types WHERE Name = 'Urlop wypoczynkowy'), (SELECT id FROM Statuses WHERE Name = 'Odrzucony'))");
 
         }
 
