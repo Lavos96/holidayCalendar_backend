@@ -36,6 +36,14 @@ namespace HolidaysCalendar.Api.Controllers
 
             return Ok(requestResource);
         }
+        [HttpPost("employee")]
+        public async Task<ActionResult<RequestResource>> GetRequestByEmail([FromBody] EmailResource email)
+        {
+            var request = await _requestService.GetAllRequestsByEmail(email.Email);
+            var requestResource = _mapper.Map<Request, RequestResource>(request);
+
+            return Ok(requestResource);
+        }
         [HttpPost("")]
         public async Task<ActionResult<RequestResource>> CreateRequest([FromBody] SaveRequestResource saveRequestResource)
         {

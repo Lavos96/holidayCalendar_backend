@@ -10,6 +10,8 @@ namespace HolidaysCalendar.Core.Services
         Task<IEnumerable<Request>> GetAllRequests();
         // Get request by id
         Task<Request> GetRequestById(int id);
+        // Get all requests for current user
+        Task<Request> GetAllRequestsByEmail(string email);
         // get all requests by type id
         Task<IEnumerable<Request>> GetRequestsByTypeId(int typeId);
         // get all requests by status id

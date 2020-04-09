@@ -5,6 +5,7 @@ namespace HolidaysCalendar.Api.Resources
     public class SaveRequestResource
     {
         public int Id { get; set; }
+        public string Employee { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Reason { get; set; }

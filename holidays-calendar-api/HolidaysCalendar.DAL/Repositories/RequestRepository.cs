@@ -45,6 +45,14 @@ namespace HolidaysCalendar.DAL.Repositories
                 .SingleOrDefaultAsync(request => request.Id == id);
         }
 
+        public async Task<Request> GetAllRequestsByEmailAsync(string email)
+        {
+            return await HolidaysCalendarDbContext.Requests
+                .Include(request => request.Type)
+                .Include(request => request.Status)
+                .SingleOrDefaultAsync(request => request.Employee == email);
+        }
+
         private HolidaysCalendarDbContext HolidaysCalendarDbContext
         {
             get { return Context as HolidaysCalendarDbContext; }
