@@ -32,15 +32,16 @@ namespace HolidaysCalendar.Services
                 .GetAllRequestsAsync();
         }
 
+        public async Task<IEnumerable<Request>> GetAllRequestsByEmail(string email)
+        {
+            return await _unitOfWork.Requests
+                .GetAllRequestsByEmailAsync(email);
+        }
+
         public async Task<Request> GetRequestById(int id)
         {
             return await _unitOfWork.Requests
                 .GetRequestByIdAsync(id);
-        }
-        public async Task<Request> GetAllRequestsByEmail(string email)
-        {
-            return await _unitOfWork.Requests
-                .GetAllRequestsByEmailAsync(email);
         }
 
         public async Task<IEnumerable<Request>> GetRequestsByStatusId(int statusId)

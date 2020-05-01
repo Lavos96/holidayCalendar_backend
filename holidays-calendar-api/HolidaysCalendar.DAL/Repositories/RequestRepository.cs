@@ -16,7 +16,16 @@ namespace HolidaysCalendar.DAL.Repositories
             return await HolidaysCalendarDbContext.Requests
                 .Include(request => request.Type)
                 .Include(request => request.Status)
-                .ToListAsync();;
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Request>> GetAllRequestsByEmailAsync(string email)
+        {
+            return await HolidaysCalendarDbContext.Requests
+                .Include(request => request.Type)
+                .Include(request => request.Status)
+                .Where(request => request.Employee == email)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<Request>> GetAllRequestsByTypeIdAsync(int typeId)
@@ -43,14 +52,6 @@ namespace HolidaysCalendar.DAL.Repositories
                 .Include(request => request.Type)
                 .Include(request => request.Status)
                 .SingleOrDefaultAsync(request => request.Id == id);
-        }
-
-        public async Task<Request> GetAllRequestsByEmailAsync(string email)
-        {
-            return await HolidaysCalendarDbContext.Requests
-                .Include(request => request.Type)
-                .Include(request => request.Status)
-                .SingleOrDefaultAsync(request => request.Employee == email);
         }
 
         private HolidaysCalendarDbContext HolidaysCalendarDbContext
