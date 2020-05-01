@@ -28,18 +28,18 @@ namespace HolidaysCalendar.Api.Controllers
 
             return Ok(requestResources);
         }
+        [HttpPost("employee")]
+        public async Task<ActionResult<IEnumerable<RequestResource>>> GetRequestsByEmail([FromBody] EmailResource email)
+        {
+            var requests = await _requestService.GetAllRequestsByEmail(email.Email);
+            var requestResources = _mapper.Map<IEnumerable<Request>, IEnumerable<RequestResource>>(requests);
+
+            return Ok(requestResources);
+        }
         [HttpGet("{id}")]
         public async Task<ActionResult<RequestResource>> GetRequestById(int id)
         {
             var request = await _requestService.GetRequestById(id);
-            var requestResource = _mapper.Map<Request, RequestResource>(request);
-
-            return Ok(requestResource);
-        }
-        [HttpPost("employee")]
-        public async Task<ActionResult<RequestResource>> GetRequestByEmail([FromBody] EmailResource email)
-        {
-            var request = await _requestService.GetAllRequestsByEmail(email.Email);
             var requestResource = _mapper.Map<Request, RequestResource>(request);
 
             return Ok(requestResource);
