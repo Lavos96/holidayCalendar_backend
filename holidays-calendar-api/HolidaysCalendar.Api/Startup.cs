@@ -50,7 +50,7 @@ namespace HolidaysCalendar.Api
                 builder =>
                 {
                     //dodajemy zeby apka mogla sie komunkowac z frontem
-                    builder.WithOrigins("http://localhost:4200").AllowAnyHeader();
+                    builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
                 });
             });
 
