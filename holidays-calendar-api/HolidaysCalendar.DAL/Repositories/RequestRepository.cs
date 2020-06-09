@@ -16,6 +16,7 @@ namespace HolidaysCalendar.DAL.Repositories
             return await HolidaysCalendarDbContext.Requests
                 .Include(request => request.Type)
                 .Include(request => request.Status)
+                .OrderByDescending(request => request.Requested)
                 .ToListAsync();
         }
 
